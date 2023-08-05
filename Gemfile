@@ -74,3 +74,12 @@ gem "haml-rails", "~> 2.1"
 gem "html2haml", "~> 2.3"
 
 gem "bootstrap", "~> 5.2"
+
+gem "clearance", "~> 2.6"
+
+gem "feedjira", "~> 3.2"
+gem "async", "~> 2.6"
+
+gem "nokogiri", "~> 1.15"
+
+gem "http", "~> 5.1"
