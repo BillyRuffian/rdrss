@@ -1,8 +1,9 @@
 class Source 
-  attr_reader :feed
-  
+  attr_reader :feeds
+
   def initialize(uri)
     @uri = uri
+    @feeds = []
     fetch
   end
 
@@ -13,13 +14,13 @@ class Source
 
   def detect_feeds
     if @response.headers['Content-Type'].include?('text/html')
-      find_rss_links
+      search_html_head
     else
-      @feed = Feedjira.parse(@response.body.to_s)
+      @feeds << feed(Feedjira.parse(@response.body.to_s))
     end
   end
 
-  def find_rss_links
+  def search_html_head
     document = Nokogiri::HTML5.parse(@response.body.to_s)
     alt = document
             .css("link[rel~=alternate]")
@@ -31,5 +32,9 @@ class Source
 
     @uri = @response.uri.join(alt[:href]).to_s
     fetch
+  end
+
+  private def feed(f)
+    Feed.new(url: f.url, title: f.title, etag: @response.headers['etag'], ttl: Integer(f.ttl, exception: false))
   end
 end
