@@ -311,6 +311,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  addressable (~> 2.8)
   async (~> 2.6)
   bootsnap
   bootstrap (~> 5.2)

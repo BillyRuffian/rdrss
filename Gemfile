@@ -83,3 +83,5 @@ gem "async", "~> 2.6"
 gem "nokogiri", "~> 1.15"
 
 gem "http", "~> 5.1"
+
+gem "addressable", "~> 2.8"
